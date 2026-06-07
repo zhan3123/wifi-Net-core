@@ -244,4 +244,77 @@ th {
 /* Efek kursor tangan saat menu samping disentuh */
 .nav-links li a {
     cursor: pointer;
+}/* ==========================================================================
+   KODE TAMBAHAN AGAR RESPONSIV / RAPI SAAT DIBUKA DI HP (MEDIA QUERY)
+   ========================================================================== */
+
+@media screen and (max-width: 768px) {
+    /* 1. Mengubah posisi sidebar dari samping menjadi ke atas layar */
+    body {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        padding: 15px;
+    }
+
+    .nav-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .nav-links li {
+        margin-bottom: 0;
+    }
+
+    .nav-links li a {
+        padding: 8px 12px;
+        font-size: 0.85rem;
+    }
+
+    .sidebar-footer {
+        display: none; /* Sembunyikan footer versi di HP agar hemat ruang */
+    }
+
+    /* 2. Menyesuaikan area konten utama */
+    .main-content {
+        padding: 15px;
+    }
+
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    /* 3. Mengubah susunan kotak Dashboard menjadi 1 kolom vertikal */
+    .stats-container {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    /* 4. Mengamankan form input agar tidak meluber */
+    .form-section form {
+        grid-template-columns: 1fr;
+    }
+
+    /* 5. Memperbaiki tampilan flexbox pencarian & filter */
+    .filter-section {
+        flex-direction: column;
+        align-items: stretch !important;
+        gap: 10px !important;
+    }
+
+    /* 6. Memastikan tabel bisa digeser ke kanan-kiri di HP tanpa merusak layout */
+    .table-responsive {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    table th, table td {
+        padding: 8px;
+        font-size: 0.8rem; /* Mengecilkan teks tabel sedikit agar muat di HP */
+    }
 }
