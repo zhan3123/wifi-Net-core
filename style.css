@@ -245,76 +245,103 @@ th {
 .nav-links li a {
     cursor: pointer;
 }/* ==========================================================================
-   KODE TAMBAHAN AGAR RESPONSIV / RAPI SAAT DIBUKA DI HP (MEDIA QUERY)
+   PERBAIKAN TOTAL LAYOUT HP (GANTI KODE MEDIA QUERY LAMA DENGAN INI)
    ========================================================================== */
 
 @media screen and (max-width: 768px) {
-    /* 1. Mengubah posisi sidebar dari samping menjadi ke atas layar */
+    /* 1. Paksa halaman menyusun dari atas ke bawah, bukan kesamping */
     body {
-        flex-direction: column;
+        flex-direction: column !important;
+        overflow-x: hidden;
     }
 
+    /* 2. Bebaskan ukuran sidebar agar tidak mengunci layar HP */
     .sidebar {
-        width: 100%;
-        height: auto;
-        position: relative;
-        padding: 15px;
+        width: 100% !important;
+        height: auto !important;
+        position: relative !important; /* Melepas fixed laptop */
+        padding: 15px !important;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     }
 
+    /* 3. Atur menu tombol agar rapi, pas di jempol, dan terbagi rata (2 kolom) */
     .nav-links {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important; /* Membagi menu jadi 2 kolom seimbang */
+        gap: 10px !important;
+        margin-top: 15px;
     }
 
     .nav-links li {
-        margin-bottom: 0;
+        margin-bottom: 0 !important;
+        width: 100%;
     }
 
     .nav-links li a {
-        padding: 8px 12px;
-        font-size: 0.85rem;
+        padding: 10px 8px !important;
+        font-size: 0.8rem !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        border-radius: 6px;
+        background: rgba(255, 255, 255, 0.05);
     }
 
-    .sidebar-footer {
-        display: none; /* Sembunyikan footer versi di HP agar hemat ruang */
-    }
-
-    /* 2. Menyesuaikan area konten utama */
+    /* 4. Beri jarak konten utama agar tidak tenggelam di bawah menu */
     .main-content {
-        padding: 15px;
+        margin-left: 0 !important;
+        width: 100% !important;
+        padding: 20px 15px !important;
+    }
+
+    header {
+        text-align: center;
+        margin-bottom: 20px;
     }
 
     header h1 {
-        font-size: 1.5rem;
+        font-size: 1.4rem !important;
     }
 
-    /* 3. Mengubah susunan kotak Dashboard menjadi 1 kolom vertikal */
+    header p {
+        font-size: 0.85rem;
+    }
+
+    /* 5. Kotak ringkasan dashboard otomatis berbaris lurus kebawah */
     .stats-container {
-        grid-template-columns: 1fr;
-        gap: 15px;
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
     }
 
-    /* 4. Mengamankan form input agar tidak meluber */
+    /* 6. Form input otomatis melebar penuh */
     .form-section form {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr !important;
     }
 
-    /* 5. Memperbaiki tampilan flexbox pencarian & filter */
+    /* 7. Fitur pencarian & filter turun vertikal */
     .filter-section {
-        flex-direction: column;
+        flex-direction: column !important;
         align-items: stretch !important;
-        gap: 10px !important;
+        gap: 8px !important;
     }
 
-    /* 6. Memastikan tabel bisa digeser ke kanan-kiri di HP tanpa merusak layout */
+    /* 8. Amankan tabel agar bisa di-geser (scroll) kanan-kiri tanpa merusak layar */
     .table-responsive {
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
+        overflow-x: auto !important;
+        width: 100%;
+        margin-top: 10px;
+        border: 1px solid #e2e8f0;
+        border-radius: 6px;
     }
 
     table th, table td {
-        padding: 8px;
-        font-size: 0.8rem; /* Mengecilkan teks tabel sedikit agar muat di HP */
+        padding: 10px 8px !important;
+        font-size: 0.75rem !important;
+        white-space: nowrap; /* Mencegah teks tabel patah ke bawah */
+    }
+
+    .sidebar-footer {
+        display: none !important;
     }
 }
